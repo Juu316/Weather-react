@@ -2,47 +2,65 @@ import { useEffect, useState } from "react";
 import search from "./svg/search.svg";
 
 const countriesUrl = "https://countriesnow.space/api/v0.1/countries";
-const weatherUrl = "https://api.weatherapi.com/v1/forecast.json?";
-
+const weatherApiKey = "a9777313c9bf4ac0b4a22203251501";
 function App() {
   const [cities, setCities] = useState([]);
   const [citiesSearch, setCitiesSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-
+  const [weatherUrl, setWeatherUrl] = useState(
+    "https://api.weatherapi.com/v1/forecast.json?key=a9777313c9bf4ac0b4a22203251501&q=Ulaanbaatar&days=1&aqi=no&alerts=no"
+  );
   const handleChange = (event) => {
     setCitiesSearch(event.target.value);
   };
-
-  const fetchCities = () => {
-    fetch(countriesUrl)
+  const fetchWeather = async () => {
+    try {
+      const response = await fetch(weatherUrl);
+      const weatherData = await response.json();
+      console.log("Weather data: ", weatherData);
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
+  useEffect(() => {
+    fetchWeather();
+  }, []);
+  const fetchCities = async () => {
+    await fetch(countriesUrl)
       .then((response) => response.json())
       .then((result) => {
         //  CitiesAndCountries()
-        setFilteredData(result.data);
+        const countriesAndCities = setFilteredData(result.data);
         setCities(result.data);
       })
       .catch((error) => {
         console.log("error", error);
       });
   };
-function toLowerCase(value){
- return value.toLowerCase();
-}
+
   const filterData = () => {
-    setFilteredData(cities.filter((city) => {
-      toLowerCase(city.cities)
-    }));
+    setFilteredData(
+      cities.filter((city) => {
+        // console.log("country", city.country);
+
+        const result = city.country
+          .toUpperCase()
+          .split()
+          .includes(citiesSearch.toUpperCase());
+        return city;
+      })
+    );
   };
 
-  const seperateAndGetCities = () => {
-    cities.map((obj) => {
-      return obj.cities;
-    });
-  };
-  useEffect(() => {
-    console.log("get cities function worked");
-    seperateAndGetCities();
-  }, []);
+  // const seperateAndGetCities = () => {
+  //   cities.map((obj) => {
+  //     return obj.cities;
+  //   });
+  // };
+  // useEffect(() => {
+  //   console.log("get cities function worked");
+  //   seperateAndGetCities();
+  // }, []);
   useEffect(() => {
     console.log("Fetch data worked");
     fetchCities();
@@ -73,11 +91,10 @@ function toLowerCase(value){
 
       <div className="flex ">
         <div className="h-screen w-1/2 bg-gray-100  border-black">
-        <ul>
-        {filteredData.map((city) => (
-          <li key={city.id}>{city.name}</li>
-        ))}
-      </ul>
+          <div className="max-w-96 bg-purple-500">Content</div>
+          {/* {filteredData.map(country, index)=>{
+          
+        }} */}
         </div>
         <div className="h-screen w-1/2 bg-custom-color"></div>
       </div>
