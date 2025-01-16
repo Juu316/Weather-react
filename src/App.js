@@ -76,8 +76,9 @@ function App() {
   const handleChange = (event) => {
     const query = event.target.value;
     setCitiesSearch(query);
-    let matchedResults = stringCities.match(citiesSearch);
-    setFilteredData(matchedResults);
+    var matchWord = citiesSearch;
+    var regex = new RegExp(matchWord, 'g');
+    setFilteredData(stringCities.match(regex));
   };
 
   return (
@@ -91,26 +92,25 @@ function App() {
             alt="search icon"
             src={search}
           />
-          <input
+          <div><input
             className="rounded-3xl text-4xl"
             onChange={handleChange}
             placeholder="          Search"
-          />
+          /></div>
+          
         </div>
       </div>
 
       <div className="flex ">
         <div className="h-screen w-1/2 bg-gray-100  border-black">
           <div className="w-96 bg-purple-500"></div>
-          {filteredData.length > 0 ? (
+          {
       <ul>
         {filteredData.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
-    ) : (
-      <p>No results found</p>
-    )}
+     }
         </div>
         <div className="h-screen w-1/2 bg-custom-color"></div>
       </div>
