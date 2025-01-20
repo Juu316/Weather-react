@@ -10,7 +10,8 @@ function App() {
   const [input, setInput] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [weatherLoading, setWeatherLoading]=useState(false);
+  const [weatherLoading, setWeatherLoading] = useState(false);
+  const [weather, setWeather]=useState([]);
   // const [weatherUrl, setWeatherUrl] = useState(
   //   "https://api.weatherapi.com/v1/forecast.json?key=a9777313c9bf4ac0b4a22203251501&q=Ulaanbaatar&days=1&aqi=no&alerts=no"
   // );
@@ -47,15 +48,26 @@ function App() {
     fetchCountry();
   }, []);
 
-  const getWeather = async ()=>{
+  const getWeather = async (weatherApiKey, ) => {
     setWeatherLoading(true);
 
-    try{
+    try {
       const response = await fetch(
-        'https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${selectedCity}'
-      )
-    }catch(error){}
-  }
+        `https://api.weatherapi.com/v1/search.json?key=${weatherApiKey}&q=London`,
+        { method: "get", headers: { "Content-Type": "application/json" } }
+      );
+      const result = await result.json();
+      setWeather(result);
+      setWeatherLoading(false);
+    } catch (error) {}
+  };
+  useEffect(()=>{
+    getWeather();
+    
+    console.log("Fetch weather worked");
+    console.log("Weather of ulaanbaatar:",weather)
+  },[]);
+  
   //   const filterData = () => {
   //     setFilteredData(
   //       cities.filter((city) => {
@@ -128,17 +140,20 @@ function App() {
       </div>
 
       <div className="flex ">
-        <div className="h-screen w-1/2 bg-gray-100  border-black">
-          <div className="w-96 bg-purple-500"></div>
-          {
-            <ul>
-              {filteredData.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          }
+        <div className="h-screen w-1/2 bg-gray-100  border-black flex justify-center items-center">
+          <div className="w-[25.875vw] h-[69.333vh] bg-[rgba(255,255,255,0.75)] rounded-[3rem] shrink-0 backdrop-blur-md">
+            {
+              <ul>
+                {filteredData.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            }
+          </div>
         </div>
-        <div className="h-screen w-1/2 bg-custom-color"></div>
+        <div className="h-screen w-1/2 bg-[#0F141E] flex justify-center items-center">
+          <div className="w-[25.875vw] h-[69.333vh] bg-[rgba(17,24,39,0.75)] rounded-[3rem] shrink-0 backdrop-blur-md"></div>
+        </div>
       </div>
     </div>
   );
