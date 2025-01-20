@@ -52,7 +52,7 @@ function App() {
 
     try{
       const response = await fetch(
-        'https://api.weatherapi.com/v1/forecast.json?key=a9777313c9bf4ac0b4a22203251501&q=${selectedCity}'
+        'https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${selectedCity}'
       )
     }catch(error){}
   }
