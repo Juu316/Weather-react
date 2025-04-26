@@ -25,7 +25,7 @@ function App() {
   const fetchWeather = () => {
     try {
       fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${selectedCity}&days=1&aqi=no&alerts=no`
+        `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${selectedCity}&days=1&aqi=no&alerts=no`
       )
         .then((response) => response.json())
         .then((result) => {
