@@ -31,13 +31,14 @@ function App() {
   ]);
   const [selectedCity, setSelectedCity] = useState("Ulan Bator");
   const [selectedCountry, setSelectedCountry] = useState("Mongolia");
-  const [weatherCurrent, setWeatherCurrent] = useState("");
+  // Husvel odoonii Temperaturiig avch bolno :)
+  // const [weatherCurrent, setWeatherCurrent] = useState("");
   const [weatherMax, setWeatherMax] = useState("");
   const [weatherMin, setWeatherMin] = useState("");
   const [weatherCurrentConditionImgSrc, setWeatherCurrentConditionImgSrc] =
     useState("");
-  const [weatherCurrentConditionText, setWeatherCurrentConditionText] =
-    useState("");
+  // const [weatherCurrentConditionText, setWeatherCurrentConditionText] =
+  //   useState("");
   const [weatherMorningCondition, setWeatherMorningCondition] = useState("");
   const [weatherEveningCondition, setWeatherEveningCondition] = useState("");
   const handleChange = (event) => {
@@ -57,8 +58,8 @@ function App() {
           setWeatherCurrentConditionImgSrc(
             result.current?.condition?.icon || ""
           );
-          setWeatherCurrent(result.current?.temp_c ?? "");
-          setWeatherCurrentConditionText(result.current?.condition?.text || "");
+          // setWeatherCurrent(result.current?.temp_c ?? "");
+          // setWeatherCurrentConditionText(result.current?.condition?.text || "");
           setWeatherMax(
             result.forecast?.forecastday?.[0]?.day?.maxtemp_c ?? ""
           );
@@ -140,7 +141,7 @@ function App() {
               className="mb-2 block w-full pl-12 pr-3 py-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
-          {/* //max-w-sm min-w-full w-[100px] */}
+
           <div className=" h-[11rem] overflow-auto ">
             <div className="flex flex-col bg-gray-200 rounded-lg">
               {filteredCountries.length > 0 ? (
@@ -200,7 +201,7 @@ function App() {
           <div className="w-1/2 h-screen bg-[#f3f4f6] flex justify-center items-center">
             <div className="w-[25rem] h-[40rem] rounded-[3rem] bg-white ">
               <div className="text-blue-400 text-lg pt-4 pl-8 flex justify-between">
-                {date || ""}
+                {date || ""} Morning
               </div>
               <div className="text-[2.5rem] font-extrabold text-[#111827] pl-8">
                 {selectedCity}
@@ -242,12 +243,5 @@ function App() {
     </div>
   );
 }
-{
-  /* 
-           
-            <div>Current condition: {weatherCurrentConditionText || ""}</div>
-            <div>Current Temperature:{weatherCurrent ?? ""}°C</div>
-            
-             */
-}
+
 export default App;
