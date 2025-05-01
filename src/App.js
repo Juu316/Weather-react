@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MapPin, Globe } from "lucide-react";
+import { Search } from "lucide-react";
 function App() {
   const key = process.env.REACT_APP_API_KEY; //api.weather.com API KEY
   const [date, setDate] = useState("");
@@ -126,19 +126,19 @@ function App() {
     <div className="box-border">
       <div className="flex ">
         <div className="pl-6 pr-6 text-[1.5rem] pt-7 h-screen min-w-[25rem] w-[25rem] bg-amber-200  ">
-          <div className=" relative max-w-sm">
+          <div className=" relative max-w-sm ">
             <div>
               Selected Country:{" "}
               <span className="font-medium">{selectedCountry || ""}</span>{" "}
             </div>
             <div className="absolute  pl-3 pt-3">
-              <Globe size={30} className="text-gray-400 " />
+              <Search size={30} className="text-gray-400 " />
             </div>
             <input
               value={searchValueOfCountry}
               onChange={handleChange}
               placeholder="Search countries..."
-              className="mb-2 block w-full pl-12 pr-3 py-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className=" mb-2 block w-full pl-12 pr-3 py-2 border border-gray-300 rounded-full bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -164,17 +164,17 @@ function App() {
           </div>
           <div className="relative max-w-sm rounded-full mt-10 ">
             <div>
-              Selected City:{" "}
-              <span className="font-medium">{selectedCity || ""}</span>{" "}
+              Selected City:
+              <span className="font-medium">{selectedCity || ""}</span>
             </div>
             <div className="absolute  pl-3 pt-3">
-              <MapPin size={30} className="text-gray-400 " />
+              <Search size={30} className="text-gray-400 " />
             </div>
             <input
               value={searchValueOfCity}
               onChange={handleCityChange}
               placeholder="Search cities..."
-              className="mb-2 block w-full pl-12 pr-3 py-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="mb-2 block w-full pl-12 pr-3 py-2 border border-gray-300 rounded-full bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
