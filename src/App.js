@@ -125,7 +125,7 @@ function App() {
   return (
     <div className="box-border">
       <div className="flex ">
-        <div className="pl-6 pr-6 text-[1.5rem] pt-7 h-screen min-w-[25rem] w-[25rem] bg-amber-200  ">
+        <div className="pl-6 pr-6 text-[1.5rem] pt-7 h-screen min-w-[25rem] w-[25rem] bg-blue-400  ">
           <div className=" relative max-w-sm ">
             <div>
               Selected Country:{" "}
@@ -143,7 +143,7 @@ function App() {
           </div>
 
           <div className=" h-[11rem] overflow-auto ">
-            <div className="flex flex-col bg-gray-200 rounded-lg">
+            <div className="flex flex-col gap-1 bg-gray-200 rounded-lg">
               {filteredCountries.length > 0 ? (
                 filteredCountries.map((value, index) => (
                   <button
@@ -152,7 +152,7 @@ function App() {
                       setCities(value.cities);
                       console.log("cities from setcities;", cities);
                     }}
-                    className=" mt-1 text-left rounded-lg border hover:bg-blue-200"
+                    className=" text-left rounded-lg border hover:bg-blue-200"
                     key={index}>
                     {value.country}
                   </button>
@@ -179,14 +179,14 @@ function App() {
           </div>
 
           <div className=" h-[11rem] overflow-y-auto max-w-sm min-w-full w-[100px]">
-            <div className="flex flex-col bg-gray-200 rounded-lg">
+            <div className="flex flex-col gap-1 bg-gray-200 rounded-lg">
               {filteredCities.length > 0 ? (
                 filteredCities.map((value, index) => (
                   <button
                     onClick={() => {
                       setSelectedCity(`${value}`);
                     }}
-                    className=" mt-1 text-left rounded-lg border hover:bg-blue-200"
+                    className=" text-left rounded-lg border hover:bg-blue-200"
                     key={index}>
                     {value}
                   </button>
