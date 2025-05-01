@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, MapPin } from "lucide-react";
 function App() {
   const key = process.env.REACT_APP_API_KEY; //api.weather.com API KEY
   const [date, setDate] = useState("");
@@ -125,15 +125,152 @@ function App() {
     }
   }, [weatherCurrentConditionImgSrc]);
   return (
-    <div className="box-border">
-      <div className="flex ">
-        <div className="pl-6 pr-6 text-[1.5rem] pt-7 h-screen min-w-[25rem] w-[25rem] bg-blue-400  ">
-          <div className=" relative max-w-sm ">
+    // <div className="box-border">
+    //   <div className="flex ">
+    //     <div className="pl-6 pr-6 text-[1.5rem] pt-7 h-screen min-w-[25rem] w-[25rem] bg-blue-400  ">
+    //       <div className=" relative max-w-sm ">
+    //         <div>
+    //           Selected Country:{" "}
+    //           <span className="font-medium">{selectedCountry || ""}</span>{" "}
+    //         </div>
+    //         <div className="absolute  pl-3 pt-3">
+    //           <Search size={30} className="text-gray-400 " />
+    //         </div>
+    //         <input
+    //           value={searchValueOfCountry}
+    //           onChange={handleChange}
+    //           onFocus={() => {
+    //             setIsCountryInputFocused(true);
+    //           }}
+    //           // onBlur={() => setIsCountryInputFocused(false)}
+    //           placeholder="Search countries..."
+    //           className=" mb-2 block w-full pl-12 pr-3 py-2 border border-gray-300 rounded-full bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+    //         />
+    //       </div>
+    //       {isCountryInputFocused && (
+    //         <div className=" h-[11rem] overflow-auto ">
+    //           <div className="flex flex-col gap-1 bg-gray-200 rounded-lg">
+    //             {filteredCountries.length > 0 ? (
+    //               filteredCountries.map((value, index) => (
+    //                 <button
+    //                   onClick={() => {
+    //                     setSelectedCountry(`${value.country}`);
+    //                     setCities(value.cities);
+    //                     setIsCountryInputFocused(false);
+    //                     console.log("cities from setcities;", cities);
+    //                   }}
+    //                   className=" text-left rounded-lg border hover:bg-blue-200"
+    //                   key={index}>
+    //                   {value.country}
+    //                 </button>
+    //               ))
+    //             ) : (
+    //               <div className="p-3 text-gray-500">No countries found</div>
+    //             )}
+    //           </div>
+    //         </div>
+    //       )}
+    //       <div className="relative max-w-sm rounded-full mt-10 ">
+    //         <div>
+    //           Selected City:
+    //           <span className="font-medium">{selectedCity || ""}</span>
+    //         </div>
+    //         <div className="absolute  pl-3 pt-3">
+    //           <Search size={30} className="text-gray-400 " />
+    //         </div>
+    //         <input
+    //           value={searchValueOfCity}
+    //           onChange={handleCityChange}
+    //           onFocus={() => setIsCityInputFocused(true)}
+    //           // onBlur={() => setIsCityInputFocused(false)}
+    //           placeholder="Search cities..."
+    //           className="mb-2 block w-full pl-12 pr-3 py-2 border border-gray-300 rounded-full bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+    //         />
+    //       </div>
+    //       {isCityInputFocused && (
+    //         <div className=" h-[11rem] overflow-y-auto max-w-sm min-w-full w-[100px]">
+    //           <div className="flex flex-col gap-1 bg-gray-200 rounded-lg">
+    //             {filteredCities.length > 0 ? (
+    //               filteredCities.map((value, index) => (
+    //                 <button
+    //                   onClick={() => {
+    //                     setSelectedCity(`${value}`);
+    //                     setIsCityInputFocused(false);
+    //                   }}
+    //                   className=" text-left rounded-lg border hover:bg-blue-200"
+    //                   key={index}>
+    //                   {value}
+    //                 </button>
+    //               ))
+    //             ) : (
+    //               <div className="p-3 text-gray-500">No cities found</div>
+    //             )}
+    //           </div>
+    //         </div>
+    //       )}
+    //     </div>
+    //     <div className="h-screen w-full flex">
+    //       <div className="w-1/2 h-screen bg-[#f3f4f6] flex justify-center items-center">
+    //         <div className="w-[25rem]  rounded-[3rem] bg-white pt-4 pl-8">
+    //           <div className="text-blue-400 text-lg  flex justify-between">
+    //             {date || ""} Morning
+    //           </div>
+    //           <div className="text-[2.5rem] font-extrabold text-[#111827] ">
+    //             {selectedCity}
+    //           </div>
+    //           <div className="flex justify-center">
+    //             {" "}
+    //             <img
+    //               alt="Sun"
+    //               src="sun-min.png"
+    //               className="w-[15rem] h-[15rem] "></img>
+    //           </div>
+
+    //           <div className="pl-6 text-[110px] font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-[#111827] to-[#6b7280]">
+    //             {weatherMax ?? ""}°C
+    //           </div>
+    //           <div className="text-[#FF8E27] text-[1.5rem] font-bold pl-8 pb-4">
+    //             {weatherMorningCondition}
+    //           </div>
+    //         </div>
+    //       </div>
+    //       <div className="w-1/2 h-screen bg-[#0f141e] flex justify-center items-center">
+    //         <div className="w-[25rem]  rounded-[3rem] bg-gradient-to-b from-[#3a4f7b] to-[#111827BF] pt-4 pl-8">
+    //           <div className="text-[#9CA3AF] text-lg ">
+    //             {date || ""} Evening
+    //           </div>
+    //           <div className="text-[2.5rem] font-extrabold text-white ">
+    //             {selectedCity}
+    //           </div>
+    //           <div className="flex justify-center">
+    //             {" "}
+    //             <img
+    //               alt="Moon"
+    //               src="moon-min.png"
+    //               className="w-[15rem] h-[15rem] "></img>
+    //           </div>
+
+    //           <div className="pl-6 text-[110px] font-bold tracking-tighter bg-gradient-to-b from-[#f9fafb] to-[#f9fafb00] bg-clip-text text-transparent">
+    //             {weatherMin ?? ""}°C
+    //           </div>
+    //           <div className="text-[#777CCE] text-[1.5rem] font-bold pl-8 pb-4">
+    //             {weatherEveningCondition}
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+
+    <>
+      <div className="box-border flex ">
+        <div className="w-1/2 h-screen bg-[#f3f4f6] relative">
+          <div className=" max-w-sm absolute top-0 left-1/2 transform -translate-x-1/2 ">
             <div>
               Selected Country:{" "}
               <span className="font-medium">{selectedCountry || ""}</span>{" "}
             </div>
-            <div className="absolute  pl-3 pt-3">
+            <div className="absolute pl-3 pt-1 ">
               <Search size={30} className="text-gray-400 " />
             </div>
             <input
@@ -148,8 +285,8 @@ function App() {
             />
           </div>
           {isCountryInputFocused && (
-            <div className=" h-[11rem] overflow-auto ">
-              <div className="flex flex-col gap-1 bg-gray-200 rounded-lg">
+            <div className=" h-[8rem] overflow-auto absolute top-20 left-1/2 transform -translate-x-1/2  ">
+              <div className="flex flex-col backdrop-blur-[64px] bg-white opacity-80 rounded-lg">
                 {filteredCountries.length > 0 ? (
                   filteredCountries.map((value, index) => (
                     <button
@@ -159,8 +296,9 @@ function App() {
                         setIsCountryInputFocused(false);
                         console.log("cities from setcities;", cities);
                       }}
-                      className=" text-left rounded-lg border hover:bg-blue-200"
+                      className="flex text-left pl-6 gap-4 text-3xl font-bold text-black rounded-lg hover:bg-blue-200 "
                       key={index}>
+                      <MapPin size={40} color="gray" />
                       {value.country}
                     </button>
                   ))
@@ -170,52 +308,12 @@ function App() {
               </div>
             </div>
           )}
-          <div className="relative max-w-sm rounded-full mt-10 ">
-            <div>
-              Selected City:
-              <span className="font-medium">{selectedCity || ""}</span>
-            </div>
-            <div className="absolute  pl-3 pt-3">
-              <Search size={30} className="text-gray-400 " />
-            </div>
-            <input
-              value={searchValueOfCity}
-              onChange={handleCityChange}
-              onFocus={() => setIsCityInputFocused(true)}
-              // onBlur={() => setIsCityInputFocused(false)}
-              placeholder="Search cities..."
-              className="mb-2 block w-full pl-12 pr-3 py-2 border border-gray-300 rounded-full bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-          {isCityInputFocused && (
-            <div className=" h-[11rem] overflow-y-auto max-w-sm min-w-full w-[100px]">
-              <div className="flex flex-col gap-1 bg-gray-200 rounded-lg">
-                {filteredCities.length > 0 ? (
-                  filteredCities.map((value, index) => (
-                    <button
-                      onClick={() => {
-                        setSelectedCity(`${value}`);
-                        setIsCityInputFocused(false);
-                      }}
-                      className=" text-left rounded-lg border hover:bg-blue-200"
-                      key={index}>
-                      {value}
-                    </button>
-                  ))
-                ) : (
-                  <div className="p-3 text-gray-500">No cities found</div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="h-screen w-full flex">
-          <div className="w-1/2 h-screen bg-[#f3f4f6] flex justify-center items-center">
-            <div className="w-[25rem]  rounded-[3rem] bg-white ">
-              <div className="text-blue-400 text-lg pt-4 pl-8 flex justify-between">
+          <div className="flex justify-center items-center mt-20">
+            <div className="w-[25rem]  rounded-[3rem] bg-white pt-4 pl-8">
+              <div className="text-blue-400 text-lg  flex justify-between">
                 {date || ""} Morning
               </div>
-              <div className="text-[2.5rem] font-extrabold text-[#111827] pl-8">
+              <div className="text-[2.5rem] font-extrabold text-[#111827] ">
                 {selectedCity}
               </div>
               <div className="flex justify-center">
@@ -226,15 +324,56 @@ function App() {
                   className="w-[15rem] h-[15rem] "></img>
               </div>
 
-              <div className="pl-2 text-[110px] font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-[#111827] to-[#6b7280]">
+              <div className="pl-6 text-[110px] font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-[#111827] to-[#6b7280]">
                 {weatherMax ?? ""}°C
               </div>
-              <div className="text-[#FF8E27] text-[1.5rem] font-bold pl-8">
+              <div className="text-[#FF8E27] text-[1.5rem] font-bold pl-8 pb-4">
                 {weatherMorningCondition}
               </div>
             </div>
           </div>
-          <div className="w-1/2 h-screen bg-[#0f141e] flex justify-center items-center">
+        </div>
+        <div className="w-1/2 h-screen bg-[#0f141e] relative ">
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 max-w-sm rounded-full z-10 ">
+            <div className="text-white">
+              Selected City:{" "}
+              <span className="font-medium">{selectedCity || ""}</span>
+            </div>
+            <div className="absolute  pl-3 pt-1">
+              <Search size={30} className="text-gray-400 " />
+            </div>
+            <input
+              value={searchValueOfCity}
+              onChange={handleCityChange}
+              onFocus={() => setIsCityInputFocused(true)}
+              // onBlur={() => setIsCityInputFocused(false)}
+              placeholder="Search cities..."
+              className="mb-2 block w-full pl-12 pr-3 py-2 border border-slate-950 rounded-full bg-blue-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          {isCityInputFocused && (
+            <div className=" h-[8rem] overflow-auto absolute top-20 left-1/2 transform -translate-x-1/2  ">
+              <div className="flex flex-col backdrop-blur-[64px] bg-slate-800 opacity-80 rounded-lg">
+                {filteredCities.length > 0 ? (
+                  filteredCities.map((value, index) => (
+                    <button
+                      onClick={() => {
+                        setSelectedCity(`${value}`);
+                        setIsCityInputFocused(false);
+                      }}
+                      className="flex text-left pl-5 gap-3 text-3xl font-bold text-white rounded-lg hover:bg-blue-200 "
+                      key={index}>
+                      <MapPin size={40} color="gray" />
+                      {value}
+                    </button>
+                  ))
+                ) : (
+                  <div className="p-3 text-gray-500">No cities found</div>
+                )}
+              </div>
+            </div>
+          )}
+          <div className="flex justify-center items-center mt-20">
             <div className="w-[25rem]  rounded-[3rem] bg-gradient-to-b from-[#3a4f7b] to-[#111827BF] pt-4 pl-8">
               <div className="text-[#9CA3AF] text-lg ">
                 {date || ""} Evening
@@ -250,17 +389,17 @@ function App() {
                   className="w-[15rem] h-[15rem] "></img>
               </div>
 
-              <div className="pl-2 text-[110px] font-bold tracking-tighter bg-gradient-to-b from-[#f9fafb] to-[#f9fafb00] bg-clip-text text-transparent">
+              <div className="pl-6 text-[110px] font-bold tracking-tighter bg-gradient-to-b from-[#f9fafb] to-[#f9fafb00] bg-clip-text text-transparent">
                 {weatherMin ?? ""}°C
               </div>
-              <div className="text-[#777CCE] text-[1.5rem] font-bold pl-8">
+              <div className="text-[#777CCE] text-[1.5rem] font-bold pl-8 pb-4">
                 {weatherEveningCondition}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
